@@ -1,25 +1,86 @@
-<h2>Sign up</h2>
+<div class="flex min-h-[900px] flex-col bg-gray-50">
+  <div class="flex min-h-full flex-1 flex-col justify-center py-12 md:px-6 lg:px-8">
+    <div class="md:mx-auto md:w-full md:max-w-sm">
+      <img class="mx-auto h-10 w-auto" src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=600" alt="Your Company">
+      <h2 class="mt-6 text-center text-2xl/9 font-bold tracking-tight text-gray-900">Créer un compte</h2>
+    </div>
+    <div class="mt-10 md:mx-auto md:w-full md:max-w-sm">
+      <div class="bg-white px-6 py-12 shadow-sm sm:rounded-lg md:px-12">
+        <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), defaults:{ input_html: {class:"space-y-6" }}) do |f| %>
+          <%= f.error_notification %>
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= f.error_notification %>
+          <div class="form-inputs">
+            <div class="row">
+              <div class="col-6">
+                <%= f.label "Nom",
+                            class:"block text-sm/6 font-medium text-gray-900" %>
+                <div class="mt-2">
+                  <%= f.input :lastname,
+                              label: false,
+                              required: true,
+                              autofocus: true,
+                              input_html: { autocomplete: "email",
+                                            class: "block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6" }%>
+                </div>
+              </div>
+              <div class="col-6">
+                <%= f.label "Prénom",
+                            class:"block text-sm/6 font-medium text-gray-900" %>
+                <div class="mt-2">
+                  <%= f.input :firstname,
+                              label: false,
+                              required: true,
+                              autofocus: true,
+                              input_html: { autocomplete: "email",
+                                            class: "block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6" }%>
+                </div>
+              </div>
+            <div>
+              <%= f.label "Adresse e-mail",
+                          class:"block text-sm/6 font-medium text-gray-900" %>
+              <div class="mt-2">
+                <%= f.input :email,
+                            label: false,
+                            required: true,
+                            autofocus: true,
+                            input_html: { autocomplete: "email",
+                                          class: "block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6" }%>
+              </div>
 
-  <div class="form-inputs">
-    <%= f.input :email,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "email" }%>
-    <%= f.input :password,
-                required: true,
-                hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :password_confirmation,
-                required: true,
-                input_html: { autocomplete: "new-password" } %>
+            </div>
+            <div>
+              <%= f.label "Mot de passe",
+                          class:"block text-sm/6 font-medium text-gray-900" %>
+              <div>
+                <%= f.input :password,
+                            label: false,
+                            required: true,
+                            hint: ("#{@minimum_password_length} caractères minimum" if @minimum_password_length),
+                            input_html: { autocomplete: "new-password",
+                                          class: "block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6" } %>
+              </div>
+            </div>
+            <div>
+              <%= f.label "Confirmation du mot de passe",
+                          class:"block text-sm/6 font-medium text-gray-900" %>
+              <div>
+                <%= f.input :password_confirmation,
+                            label: false,
+                            required: true,
+                            input_html: { autocomplete: "new-password",
+                                          class: "block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6" } %>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="form-actions bg-[#2f7585] rounded-md hover:bg-[#2f7585]">
+            <%= f.button :submit, "S'inscrire", class:"flex w-full justify-center px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2f7585]" %>
+          </div>
+        <% end %>
+
+        <%= render "devise/shared/links" %>
+      </div>
+    </div>
   </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>
